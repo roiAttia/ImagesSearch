@@ -1,6 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.5.10"
+    ext {
+        lifecycle_version = '2.3.1'
+        kotlin_version = '1.5.10'
+        hilt_version = '2.35.1'
+        timber_version = '4.7.1'
+        retrofit_version = '2.9.0'
+    }
     repositories {
         google()
         mavenCentral()
@@ -18,7 +24,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
     }
 }
 
