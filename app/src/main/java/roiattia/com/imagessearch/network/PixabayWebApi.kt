@@ -10,7 +10,8 @@ interface PixabayWebApi {
 
     @GET(GET_IMAGES)
     suspend fun getImages(
-            @Query("key") apiKey: String
-    ) : Response<ImagesListResponse>
+        @Query("q") query: String,
+        @Query("key") apiKey: String
+    ): Response<ImagesListResponse>
 
 }

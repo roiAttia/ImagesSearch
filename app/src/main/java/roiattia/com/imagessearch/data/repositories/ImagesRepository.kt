@@ -3,14 +3,16 @@ package roiattia.com.imagessearch.data.repositories
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import roiattia.com.imagessearch.core.Constants
+import roiattia.com.imagessearch.core.Constants.Network.API_KEY
 import roiattia.com.imagessearch.data.web_dto.ImageResponse
 import roiattia.com.imagessearch.network.PixabayWebApi
-import timber.log.Timber
 import javax.inject.Inject
 
 interface ImagesRepository {
 
-    suspend fun fetchImages()
+    val searchProgress: StateFlow<SearchProgress>
+
+    suspend fun searchImages(query: String)
 
 }
 
@@ -25,20 +27,21 @@ class ImageRepositoryImpl @Inject constructor(
     private val webApi: PixabayWebApi
 ) : ImagesRepository {
 
-    private val _uiState = MutableStateFlow<SearchProgress>(SearchProgress.NotStarted)
-    val uiState: StateFlow<SearchProgress> = _uiState
+    private val _searchProgress = MutableStateFlow<SearchProgress>(SearchProgress.NotStarted)
+    override val searchProgress: StateFlow<SearchProgress>
+        get() = _searchProgress
 
-    override suspend fun fetchImages() {
-        _uiState.value = SearchProgress.InProgress
+    override suspend fun searchImages(query: String) {
+        _searchProgress.value = SearchProgress.InProgress
         try {
-            val response = webApi.getImages(Constants.Network.API_KEY)
+            val response = webApi.getImages(query, API_KEY)
             if (response.isSuccessful) {
                 response.body()?.let {
-                    _uiState.value = SearchProgress.Success(it.hits)
+                    _searchProgress.value = SearchProgress.Success(it.hits)
                 }
             }
         } catch (e: Exception) {
-            _uiState.value = SearchProgress.Failed("Exception connecting to server ${e.message}")
+            _searchProgress.value = SearchProgress.Failed("Exception connecting to server ${e.message}")
         }
     }
 
