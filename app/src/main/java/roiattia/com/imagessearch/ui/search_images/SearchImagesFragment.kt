@@ -1,7 +1,6 @@
 package roiattia.com.imagessearch.ui.search_images
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search_images.*
 import roiattia.com.imagessearch.R
 import roiattia.com.imagessearch.data.domain_model.Image
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchImagesFragment : Fragment() {
@@ -37,13 +35,21 @@ class SearchImagesFragment : Fragment() {
         initRecyclerView()
         subscribeViewModelCommand()
         btnSearch.setOnClickListener {
-            viewModel.fetchImages(etSearchQuery.text.toString())
+            viewModel.searchImages(etSearchQuery.text.toString())
         }
     }
 
     private fun initRecyclerView() {
         adapter = ImagesAdapter(emptyList())
         rvImages.adapter = adapter
+//        rvImages.addOnScrollListener(object  : RecyclerView.OnScrollListener() {
+//
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//                val layoutManager = rvImages.layoutManager
+//                if(layoutManager != null && layoutManager.findLast)
+//            }
+//        })
     }
 
     private fun subscribeViewModelCommand() {
@@ -52,9 +58,6 @@ class SearchImagesFragment : Fragment() {
                 is SearchImagesViewModel.Command.UpdateImages -> updateImages(it.images)
                 is SearchImagesViewModel.Command.UpdateProgressBar -> updateProgressBar(it.visible)
             }
-        })
-        viewModel.imagesList.observe(viewLifecycleOwner, {
-            adapter.setData(it)
         })
     }
 
