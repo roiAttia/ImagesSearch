@@ -31,16 +31,7 @@ class ImagesAdapter(
 
     override fun getItemCount(): Int = images.size
 
-    class CriteriaViewHolder(private val view: View) : RecyclerView.ViewHolder(view),
-        View.OnClickListener {
-
-        init {
-            view.setOnClickListener(this)
-        }
-
-        override fun onClick(p0: View?) {
-
-        }
+    class CriteriaViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bindImage(image: Image) {
             Glide.with(view)

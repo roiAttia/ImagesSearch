@@ -1,8 +1,8 @@
-package roiattia.com.imagessearch
+package roiattia.com.imagessearch.app
 
 import android.app.Application
-import android.os.Build
 import dagger.hilt.android.HiltAndroidApp
+import roiattia.com.imagessearch.BuildConfig
 import timber.log.Timber
 
 @HiltAndroidApp
