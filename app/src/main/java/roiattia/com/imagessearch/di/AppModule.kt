@@ -8,7 +8,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import roiattia.com.imagessearch.core.Constants.SharedPreferences.FILE_NAME
+import roiattia.com.imagessearch.utils.Constants.SharedPreferences.FILE_NAME
 import roiattia.com.imagessearch.data.repositories.ImageRepositoryImpl
 import roiattia.com.imagessearch.data.repositories.ImagesRepository
 import javax.inject.Singleton

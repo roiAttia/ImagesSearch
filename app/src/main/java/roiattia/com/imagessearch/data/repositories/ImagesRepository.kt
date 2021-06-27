@@ -4,7 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
-import roiattia.com.imagessearch.core.Constants.Network.API_KEY
+import roiattia.com.imagessearch.utils.Constants.Network.API_KEY
 import roiattia.com.imagessearch.data.web_dto.ImageResponse
 import roiattia.com.imagessearch.network.PixabayWebApi
 import timber.log.Timber

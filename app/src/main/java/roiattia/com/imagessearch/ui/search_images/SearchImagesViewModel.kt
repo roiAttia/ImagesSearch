@@ -4,8 +4,8 @@ import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import roiattia.com.imagessearch.core.Constants.SharedPreferences.SEARCH_IMAGES_QUERY
-import roiattia.com.imagessearch.core.PreferencesManager
+import roiattia.com.imagessearch.utils.Constants.SharedPreferences.SEARCH_IMAGES_QUERY
+import roiattia.com.imagessearch.utils.PreferencesManager
 import roiattia.com.imagessearch.data.domain_model.Image
 import roiattia.com.imagessearch.data.domain_model.Image.Companion.NetworkMapper
 import roiattia.com.imagessearch.data.mapper.ListMapperImpl

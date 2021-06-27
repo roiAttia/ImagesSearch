@@ -1,4 +1,4 @@
-package roiattia.com.imagessearch.core
+package roiattia.com.imagessearch.utils
 
 import android.content.SharedPreferences
 import javax.inject.Inject

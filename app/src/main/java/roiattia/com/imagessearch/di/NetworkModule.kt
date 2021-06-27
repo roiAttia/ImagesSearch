@@ -9,7 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import roiattia.com.imagessearch.core.Constants.Network.BASE_URL
+import roiattia.com.imagessearch.utils.Constants.Network.BASE_URL
 import roiattia.com.imagessearch.network.PixabayWebApi
 import javax.inject.Singleton
 
