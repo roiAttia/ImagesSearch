@@ -42,14 +42,6 @@ class SearchImagesFragment : Fragment() {
     private fun initRecyclerView() {
         adapter = ImagesAdapter(emptyList())
         rvImages.adapter = adapter
-//        rvImages.addOnScrollListener(object  : RecyclerView.OnScrollListener() {
-//
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//                val layoutManager = rvImages.layoutManager
-//                if(layoutManager != null && layoutManager.findLast)
-//            }
-//        })
     }
 
     private fun subscribeViewModelCommand() {

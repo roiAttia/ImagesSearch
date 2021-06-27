@@ -4,6 +4,8 @@ import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
+import roiattia.com.imagessearch.core.Constants.SharedPreferences.SEARCH_IMAGES_QUERY
+import roiattia.com.imagessearch.core.PreferencesManager
 import roiattia.com.imagessearch.data.domain_model.Image
 import roiattia.com.imagessearch.data.domain_model.Image.Companion.NetworkMapper
 import roiattia.com.imagessearch.data.mapper.ListMapperImpl
@@ -13,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchImagesViewModel @Inject constructor(
-    private val repository: ImagesRepository
+    private val repository: ImagesRepository,
+    private val prefsManager: PreferencesManager
 ) : ViewModel(), LifecycleObserver {
 
     private val _command = MutableLiveData<Command>()
@@ -27,7 +30,7 @@ class SearchImagesViewModel @Inject constructor(
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun initView() {
         observeSearchState()
-        searchImages("kittens")
+        searchImages(prefsManager.getString(SEARCH_IMAGES_QUERY, "") ?: "")
     }
 
     private fun observeSearchState() {
@@ -56,5 +59,6 @@ class SearchImagesViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             repository.searchImages(query, 1)
         }
+        prefsManager.putString(SEARCH_IMAGES_QUERY, query)
     }
 }

@@ -8,4 +8,9 @@ object Constants {
         const val SEARCH_IMAGES = "api/"
     }
 
+    object SharedPreferences {
+        const val FILE_NAME = "images_search_preferences"
+        const val SEARCH_IMAGES_QUERY = "query"
+    }
+
 }
